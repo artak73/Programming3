@@ -3,8 +3,8 @@ var grassArr = [];
 var grassEatherArr = [];
 var AliensArr = [];
 var meatEatherArr = [];
-var side = 10;
-var interval = 10;
+var side = 30;
+var interval = 30;
 var dieInterval = interval / 2;
 var met = new Metior();
 var meta = new MetiorAvatar();
@@ -13,13 +13,13 @@ var oneCycle = 0;
 function randomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
-function generateMatrix(side, GrassCount, GrassEaterCount, MeatEatherCount){ 
-    for(let i = 0; i < side; i++) {   
+function generateMatrix(side, GrassCount, GrassEaterCount, MeatEatherCount){
+    for(let i = 0; i < side; i++) {
         let arr = [];
         matrix.push(arr);
-        for(let j = 0; j < side; j++) {   
-            matrix[i].push(0);   
-        }     
+        for(let j = 0; j < side; j++) {
+            matrix[i].push(0);
+        }
     }
     for (let i = 0; i < GrassCount; i++) {
         let x = Math.round(random(0, side - 1))
@@ -44,8 +44,8 @@ function generateMatrix(side, GrassCount, GrassEaterCount, MeatEatherCount){
     }
 }
 function setup(){
-    frameRate(5);
-    generateMatrix(50,30,10,15);
+    frameRate(2);
+    generateMatrix(20,10,5,3);
     createCanvas(side * matrix[0].length   , side * matrix.length);
     canvasSide = matrix.length;
     console.log(canvasSide);
@@ -85,13 +85,13 @@ function draw(){
     }
     met.drop();
     if(grassArr.length <= 10){
-        meta.drop(1);    
+        meta.drop(1);
     }
     if(grassEatherArr.length <= 10){
-        meta.drop(2);    
+        meta.drop(2);
     }
     if(meatEatherArr.length <= 2){
-        meta.drop(3);    
+        meta.drop(3);
     }
     oneCycle++;
 }

@@ -1,32 +1,10 @@
-class Grass {
+class Grass extends LivingCreature{
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
         this.multiply = 0;
-        this.energy = 10;
-        this.direction = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
     }
-    chooseCell(ch) {
-        var found = [];
-        for (let i in this.direction) {
-            let x = this.direction[i][0];
-            let y = this.direction[i][1];
-            if (x >= 0 && y >= 0 && x <= matrix.length - 1 && y <= matrix.length - 1) {
-                if (matrix[y][x] == ch) {
-                    found.push(this.direction[i]);
-                }
-            }
-        }
-        return found;
+    chooseCell(character) {
+        return super.chooseCell(character);
     }
 
 
@@ -66,45 +44,22 @@ class Grass {
 
     };
 }
-class GrassEather {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.energy = 1;
-        this.direction = [];
+class GrassEather extends LivingCreature{
+    constructor(x, y, index){
+        super(x, y, index);
+        this.energy = 5;
     }
+
 
     updateDirection() {
-        this.direction = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
+        super.updateDirection();
     }
 
-    chooseCell(ch) {
-        this.updateDirection()
-        var found = [];
-        for (let i in this.direction) {
-
-            let x = this.direction[i][0];
-            let y = this.direction[i][1];
-
-            if (x >= 0 && y >= 0 && x <= matrix.length - 1 && y <= matrix.length - 1) {
-                if (matrix[y][x] == ch) {
-                    found.push(this.direction[i]);
-                }
-
-            }
-        }
-
-        return found;
+    chooseCell(character) {
+        this.updateDirection();
+        return super.chooseCell(character);
     }
+
 
     move() {
         this.energy--;
@@ -176,39 +131,18 @@ class GrassEather {
     }
 
 }
-class MeatEather {
+class MeatEather extends LivingCreature{
     constructor(x, y) {
+        super(x, y);
         this.multiply = 0;
-        this.x = x;
-        this.y = y;
         this.energy = 3;
-        this.direction = [];
     }
     updateDirection() {
-        this.direction = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
+        super.updateDirection();
     }
     chooseCell(ch) {
         this.updateDirection()
-        var found = [];
-        for (let i in this.direction) {
-            let x = this.direction[i][0];
-            let y = this.direction[i][1];
-            if (x >= 0 && y >= 0 && x <= matrix.length - 1 && y <= matrix.length - 1) {
-                if (matrix[y][x] == ch) {
-                    found.push(this.direction[i]);
-                }
-            }
-        }
-        return found;
+        return super.chooseCell(ch);
     }
     move() {
         this.energy--;
@@ -256,7 +190,7 @@ class MeatEather {
 
         }
 
-        if (this.multiply >= 7) {
+        if (this.multiply >= 8) {
             this.mul();
         }
         if (this.energy <= 0) {
@@ -301,72 +235,56 @@ class MeatEather {
         }
     }
 }
-class Metior {
-    constructor() {
+class Aliens extends LivingCreature{
+    constructor(x, y, energy) {
+        super(x, y);
+        this.energy = energy;
         this.multiply = 0;
-        this.x = randomInt(canvasSide);
-        this.y = randomInt(canvasSide);
-        this.energy = 5;
-        this.direction = [
-            [this.x - 1, this.y - 2],
-            [this.x - 1, this.y - 1],
-            [this.x - 2, this.y - 1],
-            [this.x + 1, this.y + 2],
-            [this.x + 1, this.y + 1],
-            [this.x + 2, this.y + 1],
-            [this.x + 3, this.y],
-            [this.x + 2, this.y],
-            [this.x + 1, this.y],
-            [this.x - 3, this.y],
-            [this.x - 2, this.y],
-            [this.x - 1, this.y],
-            [this.x, this.y + 1],
-            [this.x, this.y + 2],
-            [this.x, this.y + 3],
-            [this.x, this.y - 1],
-            [this.x, this.y - 2],
-            [this.x, this.y - 3],
-            [this.x, this.y],
-            [this.x - 1, this.y + 2],
-            [this.x - 1, this.y + 1],
-            [this.x - 2, this.y + 1],
-            [this.x + 1, this.y - 2],
-            [this.x + 1, this.y - 1],
-            [this.x + 2, this.y - 1],
-        ];
+    }
+
+    chooseCell(ch) {
+        return super.chooseCell(ch);
+    }
+    mul() {
+        this.multiply++;
+        let arr = this.chooseCell(0);
+        let emptyCell = random(arr);
+        if (this.multiply >= 3 && emptyCell) {
+            let x = emptyCell[0];
+            let y = emptyCell[1];
+            if (x >= 0 && y >= 0 && x <= matrix.length - 1 && y <= matrix.length - 1) {
+                matrix[y][x] = 5;
+                let al = new Aliens(x, y, 3); // ete 10 dnenq energy-n aylmolorakainnery kgraven ashxarhy "Чужой" 2bit version
+                AliensArr.push(al);
+                this.multiply = 0;
+            }
+        }
+    }
+    die() {
+        for (let i in AliensArr) {
+            if (AliensArr[i].x == this.x && AliensArr[i].y == this.y) {
+                AliensArr.splice(i, 1);
+            }
+        }
+        matrix[this.y][this.x] = 0;
+    }
+    act() {
+        this.energy--;
+        this.mul();
+        if (this.energy <= 0) {
+            this.die();
+        }
+    }
+}
+class Metior extends MetiorP{
+    constructor() {
+        super();
     }
     newCordinates() {
-        this.x = randomInt(canvasSide);
-        this.y = randomInt(canvasSide);
+        super.newCordinates();
     }
     updateDirection() {
-        this.direction = [
-            [this.x - 1, this.y - 2],
-            [this.x - 1, this.y - 1],
-            [this.x - 2, this.y - 1],
-            [this.x + 1, this.y + 2],
-            [this.x + 1, this.y + 1],
-            [this.x + 2, this.y + 1],
-            [this.x + 3, this.y],
-            [this.x + 2, this.y],
-            [this.x + 1, this.y],
-            [this.x - 3, this.y],
-            [this.x - 2, this.y],
-            [this.x - 1, this.y],
-            [this.x, this.y + 1],
-            [this.x, this.y + 2],
-            [this.x, this.y + 3],
-            [this.x, this.y - 1],
-            [this.x, this.y - 2],
-            [this.x, this.y - 3],
-            [this.x, this.y],
-            [this.x - 1, this.y + 2],
-            [this.x - 1, this.y + 1],
-            [this.x - 2, this.y + 1],
-            [this.x + 1, this.y - 2],
-            [this.x + 1, this.y - 1],
-            [this.x + 2, this.y - 1],
-        ];
+        super.updateDirection();
     }
     drop() {
         if (this.x == canvasSide - 1) {
@@ -416,133 +334,15 @@ class Metior {
         }
     }
 }
-class Aliens {
-    constructor(x, y, energy) {
-        this.x = x;
-        this.y = y;
-        this.energy = energy;
-        this.multiply = 0;
-        this.direction = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
-    }
-
-    chooseCell(ch) {
-        var found = [];
-        for (let i in this.direction) {
-            let x = this.direction[i][0];
-            let y = this.direction[i][1];
-            if (x >= 0 && y >= 0 && x <= matrix.length - 1 && y <= matrix.length - 1) {
-                if (matrix[y][x] == ch) {
-                    found.push(this.direction[i]);
-                }
-            }
-        }
-        return found;
-    }
-    mul() {
-        this.multiply++;
-        let arr = this.chooseCell(0);
-        let emptyCell = random(arr);
-        if (this.multiply >= 3 && emptyCell) {
-            let x = emptyCell[0];
-            let y = emptyCell[1];
-            if (x >= 0 && y >= 0 && x <= matrix.length - 1 && y <= matrix.length - 1) {
-                matrix[y][x] = 5;
-                let al = new Aliens(x, y, 3); // ete 10 dnenq energy-n aylmolorakainnery kgraven ashxarhy "Чужой" 2bit version
-                AliensArr.push(al);
-                this.multiply = 0;
-            }
-        }
-    }
-    die() {
-        for (let i in AliensArr) {
-            if (AliensArr[i].x == this.x && AliensArr[i].y == this.y) {
-                AliensArr.splice(i, 1);
-            }
-        }
-        matrix[this.y][this.x] = 0;
-    }
-    act() {
-        this.energy--;
-        this.mul();
-        if (this.energy <= 0) {
-            this.die();
-        }
-    }
-}
-class MetiorAvatar {
+class MetiorAvatar extends MetiorP{
     constructor(){
-        this.multiply = 0;
-        this.x = randomInt(canvasSide);
-        this.y = randomInt(canvasSide);
-        this.direction = [
-            [this.x - 1, this.y - 2],
-            [this.x - 1, this.y - 1],
-            [this.x - 2, this.y - 1],
-            [this.x + 1, this.y + 2],
-            [this.x + 1, this.y + 1],
-            [this.x + 2, this.y + 1],
-            [this.x + 3, this.y],
-            [this.x + 2, this.y],
-            [this.x + 1, this.y],
-            [this.x - 3, this.y],
-            [this.x - 2, this.y],
-            [this.x - 1, this.y],
-            [this.x, this.y + 1],
-            [this.x, this.y + 2],
-            [this.x, this.y + 3],
-            [this.x, this.y - 1],
-            [this.x, this.y - 2],
-            [this.x, this.y - 3],
-            [this.x, this.y],
-            [this.x - 1, this.y + 2],
-            [this.x - 1, this.y + 1],
-            [this.x - 2, this.y + 1],
-            [this.x + 1, this.y - 2],
-            [this.x + 1, this.y - 1],
-            [this.x + 2, this.y - 1],
-        ];
+        super();
     }
     newCordinates() {
-        this.x = randomInt(canvasSide);
-        this.y = randomInt(canvasSide);
+        super.newCordinates();
     }
     updateDirection() {
-        this.direction = [
-            [this.x - 1, this.y - 2],
-            [this.x - 1, this.y - 1],
-            [this.x - 2, this.y - 1],
-            [this.x + 1, this.y + 2],
-            [this.x + 1, this.y + 1],
-            [this.x + 2, this.y + 1],
-            [this.x + 3, this.y],
-            [this.x + 2, this.y],
-            [this.x + 1, this.y],
-            [this.x - 3, this.y],
-            [this.x - 2, this.y],
-            [this.x - 1, this.y],
-            [this.x, this.y + 1],
-            [this.x, this.y + 2],
-            [this.x, this.y + 3],
-            [this.x, this.y - 1],
-            [this.x, this.y - 2],
-            [this.x, this.y - 3],
-            [this.x, this.y],
-            [this.x - 1, this.y + 2],
-            [this.x - 1, this.y + 1],
-            [this.x - 2, this.y + 1],
-            [this.x + 1, this.y - 2],
-            [this.x + 1, this.y - 1],
-            [this.x + 2, this.y - 1],
-        ];
+        super.updateDirection();
     }
     drop(index) {
         for(let i in this.direction) {
