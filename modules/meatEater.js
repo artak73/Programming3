@@ -1,3 +1,4 @@
+var random = require("./parentClass/random.js");
 var LivingCreature = require("./parentClass/livingCreature.js");
 module.exports = class MeatEather extends LivingCreature{
     constructor(x, y) {

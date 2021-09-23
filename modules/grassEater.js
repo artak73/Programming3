@@ -1,4 +1,5 @@
 var LivingCreature = require("./parentClass/livingCreature.js");
+var random = require("./parentClass/random.js");
 module.exports = class GrassEather extends LivingCreature{
     constructor(x, y, index){
         super(x, y, index);

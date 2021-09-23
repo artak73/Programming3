@@ -1,4 +1,6 @@
+var random = require("./parentClass/random.js");
 var MetiorP = require("./parentClass/MetiorP.js");
+var Aliens = require("./aliens.js");
 module.exports = class Metior extends MetiorP{
     constructor() {
         super();

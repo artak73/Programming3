@@ -57,71 +57,27 @@ function setup() {
 }
 setup();
 
-function draw() {
+setInterval(draw(), fr * 1000);
+// function draw(){
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 1) {
-                console.log(" 1 ");
-            } else if (matrix[y][x] == 0) {
-                console.log(" 0 ");
-            } else if (matrix[y][x] == 2) {
-                console.log(" 2 ");
-            } else if (matrix[y][x] == 3) {
-                console.log(" 3 ");
-            } else if (matrix[y][x] == 4) {
+                fill("green");
+            }else if (matrix[y][x] == 0){
+                fill("grey");
+            }else if (matrix[y][x] == 2){
+                fill("yellow");
+            }else if (matrix[y][x] == 3){
+                fill("red");
+            }else if (matrix[y][x] == 4){
                 matrix[y][x] = 5;
-                console.log(" 4 ");
-            } else if (matrix[y][x] == 5) {
-                console.log(" 5 ");
+                fill("#eb6734");
+            }else if (matrix[y][x] == 5){
+                fill("blue");
             }
+            rect(x * side, y * side, side, side);
         }
-        console.log("\n");
     }
-    for (let i in meatEatherArr) {
-        meatEatherArr[i].move();
-    }
-    for (let i in grassArr) {
-        grassArr[i].act();
-    }
-    for (let i in grassEatherArr) {
-        grassEatherArr[i].move();
-    }
-    for (let i in AliensArr) {
-        AliensArr[i].act();
-    }
-    met.drop();
-    if (grassArr.length <= 10) {
-        meta.drop(1);
-    }
-    if (grassEatherArr.length <= 10) {
-        meta.drop(2);
-    }
-    if (meatEatherArr.length <= 2) {
-        meta.drop(3);
-    }
-    oneCycle++;
-}
-setInterval(draw(), fr * 1000);
-// function draw(){
-//     for (let y = 0; y < matrix.length; y++) {
-//         for (let x = 0; x < matrix[y].length; x++) {
-//             if (matrix[y][x] == 1) {
-//                 fill("green");
-//             }else if (matrix[y][x] == 0){
-//                 fill("grey");
-//             }else if (matrix[y][x] == 2){
-//                 fill("yellow");
-//             }else if (matrix[y][x] == 3){
-//                 fill("red");
-//             }else if (matrix[y][x] == 4){
-//                 matrix[y][x] = 5;
-//                 fill("#eb6734");
-//             }else if (matrix[y][x] == 5){
-//                 fill("blue");
-//             }
-//             rect(x * side, y * side, side, side);
-//         }
-//     }
 //     for(let i in meatEatherArr){
 //         meatEatherArr[i].move();
 //     }

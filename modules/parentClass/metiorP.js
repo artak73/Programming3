@@ -1,3 +1,4 @@
+var random = require("./parentClass/random.js.js");
 module.exports = class MetiorP{
     constructor() {
         this.multiply = 0;

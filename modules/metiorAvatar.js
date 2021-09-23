@@ -1,3 +1,4 @@
+var random = require("./parentClass/random.js");
 var MetiorP = require("./parentClass/MetiorP.js");
 module.exports = class MetiorAvatar extends MetiorP{
     constructor(){

@@ -1,3 +1,4 @@
+var random = require("./parentClass/random.js.js");
 module.exports = class LivingCreature {
     constructor(x, y, index){
         this.x = x;
