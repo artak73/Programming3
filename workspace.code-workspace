@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "third",
+			"path": "."
+		},
+		{
+			"name": "class",
+			"path": "../Programming3/class"
+		}
+	],
+	"settings": {}
+}
